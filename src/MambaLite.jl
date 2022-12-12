@@ -4,6 +4,7 @@ module MambaLite
 
 using LightGraphs: DiGraph
 import LinearAlgebra: dot
+using Showoff: showoff # Useful in hpd function
 
 
 #################### Types ####################
