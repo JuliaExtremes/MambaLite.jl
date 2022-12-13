@@ -11,3 +11,4 @@ Showoff = "992d4aef-0814-514b-bc4d-f2e9a6c4116f"
 [compat]
 LightGraphs = "^1"
 julia = "1"
+Showoff = "^0.3"
