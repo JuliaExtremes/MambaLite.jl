@@ -1,7 +1,7 @@
 name = "MambaLite"
 uuid = "ee262687-6dc1-48e3-a463-c0a35b1bf9d0"
 authors = ["Gabriel Gobeil <gabriel.gobeil199@gmail.com>", "Jonathan Jalbert <jonathan.jalbert@polymtl.ca>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
@@ -10,3 +10,5 @@ Showoff = "992d4aef-0814-514b-bc4d-f2e9a6c4116f"
 
 [compat]
 julia = "1"
+Graphs = "^1"
+Showoff = "^1"
