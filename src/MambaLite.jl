@@ -2,7 +2,7 @@ module MambaLite
 
 #################### Imports ####################
 
-using LightGraphs: DiGraph
+using Graphs: DiGraph
 import LinearAlgebra: dot
 using Showoff: showoff # Useful in hpd function
 
