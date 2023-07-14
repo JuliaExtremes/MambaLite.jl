@@ -187,6 +187,11 @@ end
 
 function nutsepsilon(x::Vector{Float64}, logfgrad::Function)
   epsilon = initialize_epsilon(x, logfgrad)
+
+  n = length(x)
+  _, r0, logf0, grad0 = leapfrog(x, randn(n), zeros(n), 0.0, logfgrad)
+  _, rprime, logfprime, gradprime = leapfrog(x, r0, grad0, epsilon, logfgrad)
+
   prob = exp(logfprime - logf0 - 0.5 * (dot(rprime) - dot(r0)))
   pm = 2 * (prob > 0.5) - 1
   while prob^pm > 0.5^pm
@@ -209,5 +214,5 @@ function initialize_epsilon(x::Vector{Float64}, logfgrad::Function)
         @error "could not initialize epsilon in Nuts."
       end
     end
-  epsilon
+  return epsilon
 end
