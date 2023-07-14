@@ -144,7 +144,11 @@ function buildtree(x::Vector{Float64}, r::Vector{Float64},
     xminus = xplus = xprime
     rminus = rplus = rprime
     gradminus = gradplus = gradprime
-    alphaprime = min(1.0, exp(logpprime - logp0))
+    if isnan(logpprime - logp0)
+      alphaprime = 1
+    else 
+      alphaprime = min(1.0, exp(logpprime - logp0))
+    end
     nalphaprime = 1
   else
     xminus, rminus, gradminus, xplus, rplus, gradplus, xprime, nprime, sprime,
