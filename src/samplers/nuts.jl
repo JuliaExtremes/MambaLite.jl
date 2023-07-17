@@ -144,7 +144,11 @@ function buildtree(x::Vector{Float64}, r::Vector{Float64},
     xminus = xplus = xprime
     rminus = rplus = rprime
     gradminus = gradplus = gradprime
-    alphaprime = min(1.0, exp(logpprime - logp0))
+    if isnan(logpprime - logp0)
+      alphaprime = 1
+    else 
+      alphaprime = min(1.0, exp(logpprime - logp0))
+    end
     nalphaprime = 1
   else
     xminus, rminus, gradminus, xplus, rplus, gradplus, xprime, nprime, sprime,
@@ -192,7 +196,7 @@ function nutsepsilon(x::Vector{Float64}, logfgrad::Function)
   _, rprime, logfprime, gradprime = leapfrog(x, r0, grad0, epsilon, logfgrad)
   prob = exp(logfprime - logf0 - 0.5 * (dot(rprime) - dot(r0)))
   pm = 2 * (prob > 0.5) - 1
-  while prob^pm > 0.5^pm
+  while isnan(prob) || prob^pm > 0.5^pm
     epsilon *= 2.0^pm
     _, rprime, logfprime, _ = leapfrog(x, r0, grad0, epsilon, logfgrad)
     prob = exp(logfprime - logf0 - 0.5 * (dot(rprime) - dot(r0)))
